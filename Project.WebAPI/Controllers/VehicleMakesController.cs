@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Project.Common;
 using Project.Model.Common;
 using Project.Model.Common.DTOs;
 using Project.Model.Models;
 using Project.Repository.Common.IRepository;
+using Project.Service.Common.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,37 +19,40 @@ namespace Project.WebAPI.Controllers
     public class VehicleMakesController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IVehicleService _vehicleService;
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
 
-        public VehicleMakesController(IUnitOfWork unitOfWork, ILoggerManager logger, IMapper mapper)
+        public VehicleMakesController(IUnitOfWork unitOfWork, IVehicleService vehicleService, ILoggerManager logger, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _vehicleService = vehicleService;
             _logger = logger;
             _mapper = mapper;
 
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllMake()
+        public async Task<IActionResult> GetAllMakes([FromQuery] RequestParams requestParams)
         {
             try
             {
-                var make = await _unitOfWork.Make.GetAllMakesAsync(trackChanges: false);
+                var make = await _vehicleService.GetPagedMake(requestParams);
                 var makeDTO = _mapper.Map<IEnumerable<MakeDTO>>(make);
                 return Ok(makeDTO);
             }
             catch (Exception ex)
             {
 
-                _logger.LogError($"Something went wrong in the {nameof(GetAllMake)}action{ex}");
+                _logger.LogError($"Something went wrong in the {nameof(GetAllMakes)}action{ex}");
                 return StatusCode(500, "Internal server error");
             }
         }
-        [HttpGet("{id:int}", Name = "GetAllMakes")]
-        public async Task<IActionResult> GetByIdMake(int id)
+
+        [HttpGet("{id:int}", Name = "GetMake")]
+        public async Task<IActionResult> GetMake(int id)
         {
-            var make = await _unitOfWork.Make.GetMakeAsync(id, trackChanges: false);
+            var make = await _vehicleService.GetMakeByIdAsync(id);
             if (make == null)
             {
                 _logger.LogInfo($"Make with id: {id} doesn't exist in the database.");
@@ -71,12 +76,12 @@ namespace Project.WebAPI.Controllers
             }
 
             var makeEntity = _mapper.Map<VehicleMake>(make);
-            _unitOfWork.Make.CreateMake(makeEntity);
+            await _unitOfWork.Make.CreateAsync(makeEntity);
             await _unitOfWork.SaveAsync();
 
             var makeToReturn = _mapper.Map<MakeDTO>(makeEntity);
 
-            return CreatedAtRoute("GetAllMakes", new { id = makeToReturn.Id }, make);
+            return CreatedAtRoute("GetMake", new { id = makeToReturn.Id }, make);
 
         }
 
@@ -91,7 +96,7 @@ namespace Project.WebAPI.Controllers
             }
 
 
-            var make =  await _unitOfWork.Make.GetMakeAsync(id, trackChanges: true);
+            var make = await _vehicleService.GetMakeByIdAsync(id);
             if (make == null)
             {
                 _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateMake)}");
@@ -115,20 +120,20 @@ namespace Project.WebAPI.Controllers
                 return BadRequest();
             }
 
-            var make = await _unitOfWork.Make.GetMakeAsync(id, trackChanges: false);
+            var make = await _vehicleService.GetMakeByIdAsync(id);
             if (make == null)
             {
                 _logger.LogError($"Invalid DELETE attempt in {nameof(DeleteMake)}");
                 return BadRequest("Submitted data is invalid");
             }
 
-            _unitOfWork.Make.DeleteMake(make);
+           await _vehicleService.DeleteMakeAsync(make);
             await _unitOfWork.SaveAsync();
 
             return NoContent();
 
         }
 
-        
+
     }
 }

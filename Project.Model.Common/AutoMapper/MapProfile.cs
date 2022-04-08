@@ -17,8 +17,11 @@ namespace Project.Model.Common.AutoMapper
             CreateMap<VehicleMake, CreateMakeDTO>().ReverseMap();
             CreateMap<VehicleModel, ModelDTO>().ReverseMap();
             CreateMap<VehicleModel, CreateModelDTO>().ReverseMap();
+            CreateMap<VehicleModel, ModelDTO>()
+                .ForMember(m => m.Make, opt => opt.MapFrom
+                (src => src.Make.Name));
 
-            
+
 
         }
     }

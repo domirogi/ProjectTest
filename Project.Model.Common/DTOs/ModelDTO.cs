@@ -14,7 +14,8 @@ namespace Project.Model.Common.DTOs
         public string Name { get; set; }
         [Required(ErrorMessage = "Abrv is a required field.")]
         public string Abrv { get; set; }
-       
+        public string Make { get; set; }
+
         [Required]
         public int MakeId { get; set; }
     }

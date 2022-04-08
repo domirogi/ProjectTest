@@ -6,6 +6,7 @@ using Project.DAL.Data;
 using Project.Model.Common;
 using Project.Repository.Common.IRepository;
 using Project.Repository.Repository;
+using Project.Service.Common.Interface;
 using Project.Service.Service;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,12 @@ namespace Project.WebAPI.Extensions
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) => services.AddDbContext<VehicleDbContext>(opts => opts.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
             b => b.MigrationsAssembly("ProjectTestDb")));
 
-        public static void ConfigureUnitOfWork(this IServiceCollection services) => services.AddScoped<IUnitOfWork, UnitOfWork>();
+        public static void ConfigureUnitOfWork(this IServiceCollection services)
+        {
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IMakeRepository, MakeRepository>();
+            services.AddScoped<IModelRepository, ModelRepository>();
+            services.AddScoped<IVehicleService, VehicleService>();
+        }
     }
 }

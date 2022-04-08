@@ -13,6 +13,8 @@ using Project.DAL.Data;
 using Project.Model.Common.AutoMapper;
 using Project.Repository.Common.IRepository;
 using Project.Repository.Repository;
+using Project.Service.Common.Interface;
+using Project.Service.Service;
 using Project.WebAPI.Extensions;
 using System;
 using System.Collections.Generic;
@@ -41,6 +43,7 @@ namespace Project.WebAPI
             services.ConfigureLoggerService();
             services.ConfigureSqlContext(Configuration);
             services.ConfigureUnitOfWork();
+           
             services.AddCors(o =>
             {
                 o.AddPolicy("AllowAll", builder =>

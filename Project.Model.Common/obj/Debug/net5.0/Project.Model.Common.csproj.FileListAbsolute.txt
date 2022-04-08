@@ -1,0 +1,15 @@
+C:\Users\domx\source\repos\ProjectTest\Project.Model.Common\bin\Debug\net5.0\Project.Model.Common.deps.json
+C:\Users\domx\source\repos\ProjectTest\Project.Model.Common\bin\Debug\net5.0\Project.Model.Common.dll
+C:\Users\domx\source\repos\ProjectTest\Project.Model.Common\bin\Debug\net5.0\ref\Project.Model.Common.dll
+C:\Users\domx\source\repos\ProjectTest\Project.Model.Common\bin\Debug\net5.0\Project.Model.Common.pdb
+C:\Users\domx\source\repos\ProjectTest\Project.Model.Common\obj\Debug\net5.0\Project.Model.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\domx\source\repos\ProjectTest\Project.Model.Common\obj\Debug\net5.0\Project.Model.Common.AssemblyInfoInputs.cache
+C:\Users\domx\source\repos\ProjectTest\Project.Model.Common\obj\Debug\net5.0\Project.Model.Common.AssemblyInfo.cs
+C:\Users\domx\source\repos\ProjectTest\Project.Model.Common\obj\Debug\net5.0\Project.Model.Common.csproj.CoreCompileInputs.cache
+C:\Users\domx\source\repos\ProjectTest\Project.Model.Common\obj\Debug\net5.0\Project.Model.Common.dll
+C:\Users\domx\source\repos\ProjectTest\Project.Model.Common\obj\Debug\net5.0\ref\Project.Model.Common.dll
+C:\Users\domx\source\repos\ProjectTest\Project.Model.Common\obj\Debug\net5.0\Project.Model.Common.pdb
+C:\Users\domx\source\repos\ProjectTest\Project.Model.Common\obj\Debug\net5.0\Project.Model.Common.csproj.AssemblyReference.cache
+C:\Users\domx\source\repos\ProjectTest\Project.Model.Common\bin\Debug\net5.0\Project.Model.dll
+C:\Users\domx\source\repos\ProjectTest\Project.Model.Common\bin\Debug\net5.0\Project.Model.pdb
+C:\Users\domx\source\repos\ProjectTest\Project.Model.Common\obj\Debug\net5.0\Project.Model.Common.csproj.CopyComplete
