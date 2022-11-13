@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Project.Common\Project.Common.csproj" />
+    <ProjectReference Include="..\Project.DAL\Project.DAL.csproj" />
+    <ProjectReference Include="..\Project.Model\Project.Model.csproj" />
+    <ProjectReference Include="..\Project.Repository.Common\Project.Repository.Common.csproj" />
+	  
+	 
+  </ItemGroup>
+
+
+</Project>
